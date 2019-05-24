@@ -1,0 +1,15 @@
+# Node build artifacts
+node_modules
+npm-debug.log
+dist
+
+# Local development
+.env
+.env-prod
+.env-dev
+.DS_Store
+push-to-raspberry.sh
+
+# Execution resources
+pid
+log

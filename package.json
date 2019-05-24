@@ -1,0 +1,36 @@
+{
+  "name": "train-unloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.esm.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "node dist/bundle.esm.js",
+    "test": "jest",
+    "pretest": "npm run build"
+  },
+  "author": "pozil",
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "adafruit-i2c-pwm-driver-async": "^1.0.0",
+    "cometd-node-promise-client": "^1.1.2",
+    "dotenv": "^5.0.1",
+    "salesforce-node-client": "^1.2.2",
+    "winston": "^2.4.3",
+    "i2c": "^0.2.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "jest": "^24.7.1",
+    "rollup": "^1.10.1",
+    "rollup-plugin-node-resolve": "^4.2.3"
+  },
+  "engines": {
+    "node": ">=10.15.0"
+  }
+}
