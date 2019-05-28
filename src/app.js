@@ -55,24 +55,27 @@ const onPlatformEvent = platformEvent => {
   const eventData = platformEvent.data.payload;
   switch (eventData.Event__c) {
     case EVENT_TRAIN_PAYLOAD_DELIVERED:
-      driver.setPWM(0, 0, 150)
-        .then(() => driver.setPWM(1, 0, 180))
-        .then(() => sleep(1))
-        .then(() => driver.setPWM(1, 0, 500))
-        .then(() => sleep(0.5))
-        .then(() => driver.setPWM(0, 0, 330))
-        .then(() => sleep(1))
-        .then(() => driver.setPWM(0, 0, 150))
-        .then(() => driver.setPWM(1, 0, 180))
-        .then(() => sleep(1))
+      unload();
     break;
   }
-}
+};
 
-Promise.all([
-  sfdc.init(onPlatformEvent),
-  driver.init().then(() => driver.setPWMFreq(50))
-]).catch(error => {
-  LOG.error(error);
-});
+const unload = () => {
+  driver.setPWM(0, 0, 150)
+    .then(() => driver.setPWM(1, 0, 180))
+    .then(() => sleep(1))
+    .then(() => driver.setPWM(1, 0, 500))
+    .then(() => sleep(0.5))
+    .then(() => driver.setPWM(0, 0, 330))
+    .then(() => sleep(1))
+    .then(() => driver.setPWM(0, 0, 150))
+    .then(() => driver.setPWM(1, 0, 180))
+    .then(() => sleep(1))
+};
 
+driver.init()
+  .then(() => driver.setPWMFreq(50))  
+  .then(() => sfdc.init(onPlatformEvent))
+  .catch(error => {
+    LOG.error(error);
+  });
